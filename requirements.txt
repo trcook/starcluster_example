@@ -1,1 +1,3 @@
-StarCluster==0.95.6
+starcluster>=0.95.6
+boto==2.36.0
+ipython==3.0.0

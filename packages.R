@@ -8,7 +8,8 @@ install_github("trcook/tmisc",subdir="tmisc")
 
 #To run in parallel:
 # require(doSNOW)
-# clist<-c(rep('localhost',2),rep("node001",2)) # i.e. repeat node name for the # of cores on each node
+# n = 2 # number of cores on each node
+# clist<-c(rep('localhost',n),rep("node001",n)) # i.e. repeat node name for the # of cores on each node
 # cl<-makeSOCKcluster(clist)
 # registerDoSNOW(cl)
 # parallel code here

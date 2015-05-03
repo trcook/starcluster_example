@@ -6,7 +6,7 @@
 # Type starcluster -r us-east-1 listpublic to get list of current
 # Basic command is:
 # starcluster start -o -s 1 -I <INSTANCE-TYPE> -m <BASE-AMI-ID> imagehost
-starcluster start -o -s 1 -b 0.05 -I 'c4.large' -m ami-52a0c53b imagehost
+starcluster start -o -s 1 -b 0.05 -I 't2.medium' -m ami-52a0c53b imagehost
 #starcluster start -s 5 -I 't2.micro'
 # starcluster start -o -s 1 -b 0.03 -I 'c4.large' -m ami-22bc8b4a imagehost
 # to make new image: starcluster ebsimage i-6eb33592 starclusteR_03_31_14
