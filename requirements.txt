@@ -1,3 +1,4 @@
 starcluster>=0.95.6
 boto==2.36.0
 ipython==3.0.0
+s3cmd>=1.5.2
