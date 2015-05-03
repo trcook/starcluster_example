@@ -22,7 +22,7 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 
 
 ## Basic idea
-* bootstrap into a virtual environment using the bootstrap.sh script
+1. bootstrap into a virtual environment using the bootstrap.sh script
 	* this will intall a bunch of stuff. YOu can also just run `pip install -r requirements.txt` but this will install globally
 	* After running bootstrap.sh, start the venv for the rest of this (starting from the repo root): `source ./venv/bin/activate`. To leave the venv, type deactivate at any time.
 
@@ -51,16 +51,19 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 * once inside your tmux session, configure s3cmd for the REMOTE machines (same process as above). 
 * bring in your data via `s3cmd get` from s3 (using s3 as an intermediary is a really efficient and cost effective way to go with this. you also don't get charged for data ingress into the ebs volume -- i don't think). 
 * pull up R with `R`
-* launch your code with parallelization. for example:
-```r
-# require(doSNOW)
-n = 2 # number of cores on each node
-clist<-c(rep('localhost',n),rep("node001",n)) # i.e. repeat node name for the # of cores on each node
-cl<-makeSOCKcluster(clist)
-registerDoSNOW(cl)
-# parallel code here
-stopCluster(cl)
+1. launch your code with parallelization. for example:
+	```r
+	# require(doSNOW)
+	n = 2 # number of cores on each node
+	clist<-c(rep('localhost',n),rep("node001",n)) # i.e. repeat node name for the # of cores on each node
+	cl<-makeSOCKcluster(clist)
+	registerDoSNOW(cl)
+	# parallel code here
+	stopCluster(cl)
 
-```
-
+	```
 * launch a seperate pane in tmux by pressing the following sequence: `ctrl-b` then `shift-6`. type `htop`. Now, type `ctrl-b shift-6` and then `ssh node001` to login to node 001 in a new window. Then type `htop`. Repeat as needed to get  a sense of how each node is performing. You want walled processors across the board -- otherwise you aren't making good use of the server time.
+* save your results in R to a dataset or workspace image and quit R
+* export back out to s3 with `s3cmd put`
+* download locally with `s3 get` on your local machine for further processing
+* profit.
