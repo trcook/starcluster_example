@@ -25,7 +25,7 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 1. bootstrap into a virtual environment using the bootstrap.sh script
 	* this will intall a bunch of stuff. YOu can also just run `pip install -r requirements.txt` but this will install globally
 	* After running bootstrap.sh, start the venv for the rest of this (starting from the repo root): `source ./venv/bin/activate`. To leave the venv, type deactivate at any time.
-2. Configure star cluster. Type starcluster help. Follow the prompts. Then open up the config file and tweak as needed. The config file in this repo is a basic configuration to build from (but you will still need to edit it to put your info in)
+2. Configure star cluster. Type starcluster help. Follow the prompts. Then open up the config file and tweak as needed. The config file in this repo is a basic configuration to build from (but you will still need to edit it to put your info in). At a minimum, you will need to supply your awe secret, key, and id. 
 2. configure your local `s3cmd --configure`
 	* upload whatever to s3 as needed with `s3cmd put` -- see help files for how to do this, it's pretty straightforward. `s3cmd --help`
 	* you may need to go to the s3 website to configure it further, add buckets, etc
