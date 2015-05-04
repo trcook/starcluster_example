@@ -22,6 +22,7 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 
 
 ## Basic idea
+### first/One-time setup steps
 1. bootstrap into a virtual environment using the bootstrap.sh script
 	* this will intall a bunch of stuff. YOu can also just run `pip install -r requirements.txt` but this will install globally
 	* After running bootstrap.sh, start the venv for the rest of this (starting from the repo root): `source ./venv/bin/activate`. To leave the venv, type deactivate at any time.
@@ -42,6 +43,8 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 	* fill in the node_image_id with your ami number. 
 	* fill in your cluster size and other options
 
+### launching/using cluster (do this every time you want to start/manage cluster)
+3. activate venv as above (`source ./venv/bin/activate`)
 3. launch your cluster with starcluster start -c smallcluster mycluster
 	* use spot instance bidding. TO get an idea of spot prices. see the included ipython notebook. (it also has some other important odds and ends)
 3. login to the head node of your cluster with `starcluster sshmaster mycluster`
@@ -65,5 +68,6 @@ You also need to setup ssh to work correctly. This works differetnly depending o
 2. launch a seperate pane in tmux by pressing the following sequence: `ctrl-b` then `shift-6`. type `htop`. Now, type `ctrl-b shift-6` and then `ssh node001` to login to node 001 in a new window. Then type `htop`. Repeat as needed to get  a sense of how each node is performing. You want walled processors across the board -- otherwise you aren't making good use of the server time.
 3. save your results in R to a dataset or workspace image and quit R
 4. export back out to s3 with `s3cmd put`
+4. terminate or stop the cluster with `starcluster terminate mycluster` (or `stop` instead of `terminate` if you just want to hold the cluster as is and come back to it later -- you can't do this with spot instances) on your local machine
 5. download locally with `s3 get` on your local machine for further processing
 6. profit.
